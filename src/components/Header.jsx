@@ -1,17 +1,22 @@
 import {Link} from "react-router-dom";
 
+import Search from "./Search"
+
 function Header() {
   
   return (
     <div className="header">
         <div className="container">
-          <div className="header__logo">
-            <img width="38" src="./img/logo.jpg" alt="Pizza logo" />
+          <Link to='/'>
+            <div className="header__logo">
+              <img width="38" src="./img/logo.jpg" alt="logo" />
             <div>
               <h1>✨🌷🌺🌿</h1>
               <p>lovely flowers for you</p>
             </div>
           </div>
+          </Link>
+          <Search />
           <div className="header__cart">
             <Link to={'/cart'} className="button button--cart">
               <span>520 ₽</span>

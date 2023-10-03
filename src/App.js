@@ -1,50 +1,54 @@
 import React from 'react';
 
 import Header from './components/Header';
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Outlet,
-  Route,
-  RouterProvider,
-} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Home from './pages/Home';
 import Cart from './pages/Cart';
+import CartEmpty from './pages/CartEmpty';
 import NotFound from './pages/NotFound';
 
 import './scss/app.scss';
 
+export const SearchContext = React.createContext();
+
 function App() {
 
-  const router = createBrowserRouter(
-    createRoutesFromElements(
-      <Route path='/' element={<Roote/>}>
-        <Route index element={<Home/>}/>
-        <Route path='/cart' element={<Cart/>}/>
-        <Route path='*' element={<NotFound/>}/>
-      </Route>
-    )
-  )
+  const [searchValue, setSearchValue] = React.useState('');
 
-  return (
-    <>
-      <RouterProvider router={router}/>
-    </>
-  );
-}
-
-const Roote = () => {
   return (
     <div className="wrapper">
-      <Header />
-      <div className="content">
-        <div className="container">
-          <Outlet/>
+      <SearchContext.Provider value={{ searchValue, setSearchValue }}>
+        <Header />
+        <div className="content">
+          <div className="container">
+            <Routes>
+              <Route index element={<Home />}/>
+              <Route path='/cart' element={<Cart/>}/>
+              <Route path='/cartEmpty' element={<CartEmpty/>}/>
+              <Route path='*' element={<NotFound/>}/>
+            </Routes>
+          </div>
         </div>
-      </div>
+      </SearchContext.Provider>
     </div>
   )
-}
+};
+
+// const Roote = ({searchValue, setSearchValue}) => {
+
+//   return (
+//     <div className="wrapper">
+//       <SearchContext.Provider value={{ searchValue, setSearchValue }}>
+//         <Header />
+//         <div className="content">
+//           <div className="container">
+//             <Outlet/>
+//           </div>
+//         </div>
+//       </SearchContext.Provider>
+//     </div>
+//   )
+// }
 
 export default App;

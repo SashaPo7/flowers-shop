@@ -6,16 +6,33 @@
 
 body {
   background-color: $background;
+  box-sizing: border-box;
 }
 
 .wrapper {
-  width: calc(100vw - 100px);
   height: 100%;
+  max-width: 330px;
   background-color: #fff;
   margin: 50px auto;
   border-radius: 10px;
-  max-width: 1400px;
-  min-width: 300px;
+}
+
+@media(min-width:640px){
+  .wrapper{
+    max-width: 620px;
+  }
+}
+
+@media(min-width:1024px) {
+  .wrapper {
+    max-width: 950px;
+  }
+}
+
+@media(min-width:1440px) {
+  .wrapper {
+    max-width: 1300px;
+  }
 }
 
 .content {
@@ -26,21 +43,66 @@ body {
   }
 
   &__items {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(1);
+    grid-template-rows: repeat(2);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
   }
 
   &__top {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin-bottom: 50px;
+  }
+}
+@media(min-width:640px) {
+  .content {
+    &__items {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      grid-column-gap: 0px;
+      grid-row-gap: 0px; 
+    }
+  }
+}
+
+@media(min-width:1024px) {
+  .content{
+    &__top{
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+    &__items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    }
+  }
+}
+
+@media(min-width:1440px) {
+  .content {
+    &__items {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(1, 1fr);
+      grid-column-gap: 0px;
+      grid-row-gap: 0px;
+    }
   }
 }
 
 .container {
-  width: $container-width;
+  width: 300px;
   margin: 0 auto;
+  box-sizing: border-box;
 
   &--cart {
     max-width: 820px;
@@ -48,7 +110,14 @@ body {
 
     .content__title {
       margin: 0;
+      box-sizing: border-box;
     }
+  }
+}
+
+@media(min-width:640px){
+  .container{
+    width: 95%;
   }
 }
 

@@ -1,20 +1,14 @@
 import React from 'react';
 
-function Navigation() {
+function Navigation({value, onClickItem}) {
 
-  const categories = ['All', 'Bouquets', 'Round', 'Compositions', 'Wedding'];
-
-  const [activeIndex, setActiveIndex] = React.useState(0);
-  
-  const togglerActive = (index) => {
-    setActiveIndex(index)
-  } ;
+  const categories = ['All', 'Bouquets','Round', 'Compositions', 'Wedding'];
 
   return(
     <div className="categories">
       <ul>
         {categories.map((item, i) => (
-          <li key={i} onClick={() => togglerActive(i)} className={activeIndex === i ? 'active' : ''}>{item}</li>
+          <li key={i} onClick={() => onClickItem(item)} className={value === item ? 'active' : ''}>{item}</li>
         ))}
       </ul>
     </div>

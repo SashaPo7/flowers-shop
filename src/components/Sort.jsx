@@ -1,15 +1,16 @@
 import React from 'react';
+import {  useSelector, useDispatch } from 'react-redux';
 
-function Sort() {
+import {  setSortItem } from '../redux/slices/filterSlice';
 
-  const [showPopup, setShowPopup] = React.useState(false);
-  const [activeItem, setActiveItem] = React.useState(0); 
+function Sort({list}) {
 
-  const list = ['price', 'alphabet'];
-  const sortName = list[activeItem];
+  const dispatch = useDispatch();
+  const sortItem = useSelector(state => state.filter.sortItem);
+  const [showPopup, setShowPopup] = React.useState(true);
 
   const onClickListItem = (i) => {
-    setActiveItem(i);
+    dispatch(setSortItem(i));
     setShowPopup(false);
   }
 
@@ -29,13 +30,13 @@ function Sort() {
         />
       </svg>
       <b>Sort by:</b>
-      <span onClick={()=> setShowPopup(!showPopup)}>{sortName}</span>
+      <span onClick={()=> setShowPopup(!showPopup)}>{sortItem.name}</span>
     </div>
       {showPopup &&
         <div className="sort__popup">
           <ul>
-            {list.map((item, i)=> (
-              <li key={i} onClick={()=> onClickListItem(i)} className={activeItem === i? 'active' : ''} >{item}</li>
+            {list.map((obj, i)=> (
+              <li key={i} onClick={()=> onClickListItem(obj)} className={sortItem.sort === obj.sort? 'active' : ''} >{obj.name}</li>
             ))}
           </ul>
         </div>  

@@ -7,22 +7,22 @@ function FlowersBlock({img, title, price}) {
   const size = ['S', 'M', 'L'];
 
   return (
-    <div className="pizza-block">
+    <div className="flower-block">
       <img
-        className="pizza-block__image"
+        className="flower-block__image"
         src={img}
-        alt="Pizza"
+        alt="flower"
       />
-      <h4 className="pizza-block__title">{title}</h4>
-      <div className="pizza-block__selector">
+      <h4 className="flower-block__title">{title}</h4>
+      <div className="flower-block__selector">
         <ul>
           {size.map((item, i) => (
             <li key={i} onClick={()=> setActiveSize(i)} className={activeSize === i ? 'active' : ''} >{item}</li>
           ))}
         </ul>
       </div>
-      <div className="pizza-block__bottom">
-        <div className="pizza-block__price">from {price} £</div>
+      <div className="flower-block__bottom">
+        <div className="flower-block__price">from {price} £</div>
         <div className="button button--outline button--add">
           <svg
             width="12"

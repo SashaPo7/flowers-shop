@@ -1,9 +1,12 @@
 @import '../variables';
 
 .categories {
-  margin-bottom: 100px;
+  margin-bottom: 20px;
+  overflow-x: scroll;
+  box-sizing: content-box;
   ul {
     display: flex;
+    
 
     li {
       background-color: #f9f9f9;
@@ -28,5 +31,8 @@
         color: #282828;
       }
     }
+  }
+  &::-webkit-scrollbar{
+    display: none;
   }
 }
